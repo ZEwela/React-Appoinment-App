@@ -1,8 +1,8 @@
 import {React, useState, useEffect} from "react";
 import { ContactPicker } from "../../components/contactPicker/ContactPicker";
-import propTypes from 'prop-types';
-import { ContactForm } from "../../components/contactForm/ContactForm"; 
-import {TitleList} from "../../components/tileList/TileList";
+import PropTypes from 'prop-types';
+import  {ContactForm}  from "../../components/contactForm/ContactForm"; 
+import {TileList} from "../../components/tileList/TileList";
 
 
 
@@ -10,23 +10,23 @@ export const ContactsPage = (props) => {
   const {contacts, addContact} = props;
 
 
-  const [currentName, setCurrentName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [duplicate, setDuplicate] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (duplicate === false) {
-      addContact(currentName, phoneNumber, email);
+      addContact(name, phone, email);
     }
-    setCurrentName('');
-    setPhoneNumber('');
+    setName('');
+    setPhone('');
     setEmail('')
   };
 
   useEffect(() => {
-  if  (contacts.filter( contact => contact.name === currentName)) {
+  if  (contacts.filter( contact => contact.name === name)) {
     setDuplicate(true);
   }
   })
@@ -35,16 +35,26 @@ export const ContactsPage = (props) => {
     <div>
       <section>
         <h2>Add Contact</h2> 
+        <ContactForm 
+          onSubmit={handleSubmit} 
+          name={name}
+          phone={phone}
+          email={email}
+          setName={setName}
+          setPhone={setPhone}
+          setEmail={setEmail}
+        />
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
+        <TileList contacts={contacts}/>
       </section>
     </div>
   );
 };
 
 ContactsPage.propTypes = {
-  contacts: Prototype.array,
-  addContact: Prototype.func
+  contacts: PropTypes.array,
+  addContact: PropTypes.func
 }
