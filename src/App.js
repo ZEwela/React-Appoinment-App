@@ -13,12 +13,12 @@ function App() {
     APPOINTMENTS: "/appointments",
   };
 
-  const handleNewContact = (name, phoneNumber, email) => {
-    setContact(prev => [
-      ...prev,
+  const handleNewContact = (name, phone, email) => {
+    setContact([
+      ...contact,
       {
         name: name,
-        phoneNumber: phoneNumber,
+        phone: phone,
         email: email
       }
     ])

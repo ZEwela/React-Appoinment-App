@@ -9,18 +9,16 @@ export const ContactForm = ({
   setEmail,
   handleSubmit
 }) => {
-  const onNameChange = ({target}) => {
-    setName(target.value)
-  }
-  const onPhoneChange = ({target}) => {
-    setPhone(target.value)
-  }
-  const onEmailChange = ({target}) => {
-    setEmail(target.value)
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    handleSubmit(e)
+    
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <label htmlFor="name">Name</label>
       <input 
         type="text" 
@@ -29,7 +27,7 @@ export const ContactForm = ({
         // defaultValue={name}
         required 
         value={name}
-        onChange={onNameChange}
+        onChange={event => setName(event.target.value)}
       />
       <label htmlFor="phone">Phone Number</label>
       <small>  (Format: 123-456-7890)</small>
@@ -41,7 +39,7 @@ export const ContactForm = ({
         required 
         value={phone}
         // defaultValue={phone} 
-        onChange={onPhoneChange}
+        onChange={event => setPhone(event.target.value)}
       />
       
       <label htmlFor="email">Email</label>
@@ -52,7 +50,7 @@ export const ContactForm = ({
         // defaultValue={email}
         value={email}
         required 
-        onChange={onEmailChange}
+        onChange={event => setEmail(event.target.value)}
       />
       <input type="submit"/>
     </form>

@@ -10,7 +10,7 @@ export const ContactsPage = (props) => {
   const {contacts, addContact} = props;
 
 
-  const [name, setName] = useState('');
+  const [currentName, setCurrentName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [duplicate, setDuplicate] = useState(false);
@@ -18,29 +18,32 @@ export const ContactsPage = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (duplicate === false) {
-      addContact(name, phone, email);
+      addContact(currentName, phone, email);
     }
-    setName('');
+    setCurrentName('');
     setPhone('');
-    setEmail('')
+    setEmail('');
+    setDuplicate(false);
   };
 
   useEffect(() => {
-  if  (contacts.filter( contact => contact.name === name)) {
+    let result = contacts.map(contact => contact.name);
+    const check = result.filter( name => name === currentName);
+  if (check.length > 0){
     setDuplicate(true);
   }
-  })
+  }, [currentName]);
 
   return (
     <div>
       <section>
         <h2>Add Contact</h2> 
         <ContactForm 
-          onSubmit={handleSubmit} 
-          name={name}
+          handleSubmit={handleSubmit} 
+          name={currentName}
           phone={phone}
           email={email}
-          setName={setName}
+          setName={setCurrentName}
           setPhone={setPhone}
           setEmail={setEmail}
         />
