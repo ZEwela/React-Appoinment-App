@@ -1,23 +1,35 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
+import { ContactPicker } from "../../components/contactPicker/ContactPicker";
+import propTypes from 'prop-types';
+import { ContactForm } from "../../components/contactForm/ContactForm"; 
+import {TitleList} from "../../components/tileList/TileList";
 
-export const ContactsPage = () => {
-  /*
-  Define state variables for 
-  contact info and duplicate check
-  */
+
+
+export const ContactsPage = (props) => {
+  const {contacts, addContact} = props;
+
+
+  const [currentName, setCurrentName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [duplicate, setDuplicate] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*
-    Add contact info and clear data
-    if the contact name is not a duplicate
-    */
+    if (duplicate === false) {
+      addContact(currentName, phoneNumber, email);
+    }
+    setCurrentName('');
+    setPhoneNumber('');
+    setEmail('')
   };
 
-  /*
-  Using hooks, check for contact name in the 
-  contacts array variable in props
-  */
+  useEffect(() => {
+  if  (contacts.filter( contact => contact.name === currentName)) {
+    setDuplicate(true);
+  }
+  })
 
   return (
     <div>
@@ -32,3 +44,7 @@ export const ContactsPage = () => {
   );
 };
 
+ContactsPage.propTypes = {
+  contacts: Prototype.array,
+  addContact: Prototype.func
+}
