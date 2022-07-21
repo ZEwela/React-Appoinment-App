@@ -26,8 +26,8 @@ function App() {
 
   
   const handleNewAppoinment = (title, contact, date, time) => {
-    setAppointment(prev => [
-      ...prev,
+    setAppointment([
+      ...appointment,
       {
         title: title,
         contact: contact,
