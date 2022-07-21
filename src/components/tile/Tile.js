@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export const Tile = ({data}) => {
   const array = Object.values(data);
   return (
-    console.log('ej', array),
     <div className="tile-container">
       {array.map((el, index) => {
        return (index === 0) ?

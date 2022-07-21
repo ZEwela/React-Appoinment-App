@@ -14,6 +14,7 @@ export const AppointmentsPage = ({appointments, contacts, addAppoinment}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('wwww', currentTitle, contact, date, time)
     addAppoinment(currentTitle, contact, date, time);
     setCurrentTitle('');
     setContact('');

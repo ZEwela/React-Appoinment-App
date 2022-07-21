@@ -27,7 +27,7 @@ export const AppointmentForm = ({
 
   return (
     <form onSubmit={onSubmit}>
-        <label for="title">Title</label>
+        <label htmlFor="title">Title</label>
         <input
           type="text"
           id="title"
@@ -36,17 +36,17 @@ export const AppointmentForm = ({
           required
           onChange={event => setTitle(event.target.value)}
         />
-        <label for="date">Date</label>
+        <label htmlFor="date">Date</label>
         <input
           type="date"
           id="date"
           name="date"
           value={date}
-          min={getTodayString}
+          min={getTodayString()}
           required
           onChange={event => setDate(event.target.value)}
         />
-        <label for="time">Time</label>
+        <label htmlFor="time">Time</label>
         <input
           type="time"
           id="time"
@@ -57,7 +57,9 @@ export const AppointmentForm = ({
         />
         <ContactPicker 
           contacts={contacts}
-          onChange={event => setContact(event.target.value)}
+          onChange={event => (
+            setContact(event.target.value))}
+          value={contact}
         />
         <input type="submit"/>
     </form>
