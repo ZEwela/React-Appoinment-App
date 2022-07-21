@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-export const Tile = ({contact}) => {
-  const array = Object.values(contact);
+export const Tile = ({data}) => {
+  const array = Object.values(data);
   return (
     console.log('ej', array),
     <div className="tile-container">
@@ -17,7 +17,7 @@ export const Tile = ({contact}) => {
 };
 
 Tile.propTypes = {
-  contact: PropTypes.object
+  data: PropTypes.object
 }
 
 

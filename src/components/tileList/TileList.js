@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {Tile} from '../tile/Tile';
 
-export const TileList = ({contacts}) => {
+export const TileList = ({list}) => {
   return (
     <ul>
-      {contacts.map((contact, index) => {
-        return <Tile key={index} contact={contact}/>
+      {list.map((data, index) => {
+        return <Tile key={index} data={data}/>
       })}
     </ul>
   );
 };
 
 TileList.propTypes = {
-  contacts: PropTypes.array
+  list: PropTypes.array
 }

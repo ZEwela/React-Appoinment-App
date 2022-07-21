@@ -5,7 +5,7 @@ import { TileList } from "../../components/tileList/TileList";
 
 
 
-export const AppointmentsPage = ({appointments, addAppoinment}) => {
+export const AppointmentsPage = ({appointments, contacts, addAppoinment}) => {
   
   const [currentTitle, setCurrentTitle] = useState('');
   const [contact, setContact] = useState('');
@@ -34,13 +34,14 @@ export const AppointmentsPage = ({appointments, addAppoinment}) => {
           setContact={setContact}
           setDate={setDate}
           setTitle={setCurrentTitle}
-          onSubmit={handleSubmit}
+          handleSubmit={handleSubmit}
+          contacts={contacts}
         />
       </section>
       <hr />
       <section>
         <h2>Appointments</h2>
-        <TileList appointments={appointments}/>
+        <TileList list={appointments}/>
       </section>
     </div>
   );
